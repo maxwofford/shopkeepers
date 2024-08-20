@@ -1,0 +1,127 @@
+greeting:
+  message: "icon:cuteRaccoon|${this.t('greeting.flavors')}|speed:4| come in, come in!"
+  flavors:
+    - Ahh, my favorite customer!
+    - raccoon has wares if you have coin!
+    - have a pretty penny you want to spend?
+    - your pockets look shiny today!
+    - that coinpurse looks heavy, let me help you with that.
+    - icon:infoRaccoon|I have a feeling you're going to like what you see today.
+    - Hey there! You look like you could use some help.
+  idle: uhhh... hello? ${this.customer}? are you there?
+  not-loading: "what's the point of even loading in if no one's actually looking at the page..."
+
+item-clicked: icon:questionRaccoon|You want to buy a |speed:3|[${this.item.toUpperCase()}]? . . .|speed:default|
+
+tabactivity:
+  woken-up: "..."
+  surprise-falls-out-of-chair: "${this.t('curses')}- *${this.t('onomatopoeia')}*"
+
+curses:
+  - "aw, what tha hack"
+  - "oh shi-"
+  - "oh ship!"
+
+onomatopoeia:
+  - "crash"
+  - "thud"
+  - "boom"
+  - "crack"
+  
+items:
+  - name: "Basic sword"
+    price: 100
+    description: "A basic sword."
+    flavor:
+      - it's pointy
+      - better than a stick
+      - .        .           .          for a basic adventurer
+    image: imgs/sword.png
+  - name: "Basic shield"
+    price: 100
+    description: "A basic shield for a basic adventurer."
+    image: imgs/shield.png
+    flavor:
+      - "icon:peefestRaccoon|I'm not sure if this is a shield or a frisbee."
+      - "A basic shield...|icon:tinfoilRaccoon|for a basic adventurer."
+      - "icon:thumbsRaccoon|It's shiny!"
+      - "icon:woahRaccoon|It's soooooo shiny!"
+  - name: "Bag of holding"
+    price: 500
+    description: "A bag that holds more than it should."
+    image: imgs/bag.png
+    flavor:
+      - "icon:infoRaccoon|I'm not sure how it works, but it's pretty cool."
+      - "icon:woahRaccoon|It's bigger on the inside!"
+      - "he he he, I wonder what I can fit in here..."
+      - "icon:tinfoilRaccoon| don't ask me where I found it"
+      - "icon:tinfoilRaccoon| don't ask me how it works, i just sell it"
+
+  - name: "Mana potion"
+    price: 50
+    description: "A potion that restores mana."
+    flavor:
+      - icon:infoRaccoon|contact your healer if mana is restored for more than 4 hours
+      - drink responsibly
+      - "icon:woahRaccoon|made from real pixies, |icon:tinfoilRaccoon|...not just the dust!"
+    image: imgs/mana.png
+  - name: "Mysterious key"
+    price: 200
+    description: "A key that opens a mysterious door."
+    flavor:
+      - oooh, wonder what it opens?
+    image: imgs/key.png
+  - name: "Stick"
+    price: 10
+    description: "A stick. It's a stick."
+    image: imgs/stick.png
+  - name: "Fruit"
+    price: 5
+    description: "A fruit a day keeps the goblins away!"
+    image: imgs/fruit.png
+    flavor: 
+      - "icon:thumbsRaccoon|Yum!"
+      - "icon:woahRaccoon|So tasty!!"
+      - "icon:woahRaccoon|I only found some of them in the trash today~"
+      - "icon:cuteRaccoon|A fruit a day keeps the goblins away!"
+  - name: "Firecracker"
+    price: 20
+    description: "A firecracker. It's loud."
+    image: imgs/firecracker.png
+    flavor:
+      - "icon:tinfoilRaccoon|As someone with sensitive ears these things are pretty|icon:freakingRaccoon|speed:4|- wait... what are you doing???.|icon:threatRaccoon|speed:4.5|PUT THAT DOWN!!"
+  - name: "Fire bomb"
+    price: 50
+    description: "Fire spell for the magically-challenged."
+    image: imgs/bomb.png
+    flavor:
+      - "icon:questionRaccoon|why does this label say |icon:infoRaccoon|speed:3| DO NOT EAT."
+  - name: "Chili pepper"
+    price: 5
+    description: "It's like firemagic for your tongue"
+    image: imgs/chili.png
+    flavor:
+      - "icon:freakingRaccoon|hot!Hot!HOT!"
+      - "It's like firemagic . . . |icon:peefestRaccoon| . . . for your tongue"
+  - name: "Potion of invisibility"
+    price: 100
+    description: "A potion that makes you invisible."
+    image: imgs/invisibility.png
+    flavor:
+      - "icon:infoRaccoon|I'm not sure if it works, but it's pretty cool."
+      - "icon:woahRaccoon|It's so shiny!"
+      - "icon:tinfoilRaccoon|I wonder what I can do with this..."
+      - "icon:questionRaccoon|I wonder if I can see myself when I drink this..."
+      - "icon:freakingRaccoon|I can't even |speed:4|*see*|speed:default| the image file..."
+
+shopkeeper:
+  questionRaccoon: https://cloud-nfmmdwony-hack-club-bot.vercel.app/0000.png
+  infoRaccoon: https://cloud-nfmmdwony-hack-club-bot.vercel.app/1001.png
+  freakingRaccoon: https://cloud-nfmmdwony-hack-club-bot.vercel.app/2002.png
+  cuteRaccoon: https://cloud-nfmmdwony-hack-club-bot.vercel.app/3003.png
+  tinfoilRaccoon: https://cloud-nfmmdwony-hack-club-bot.vercel.app/4004.png
+  peefestRaccoon: https://cloud-e9zuzn0u0-hack-club-bot.vercel.app/2002.png
+  woahRaccoon: https://cloud-e9zuzn0u0-hack-club-bot.vercel.app/3003.png
+  threatRaccoon: https://cloud-r04a8za6c-hack-club-bot.vercel.app/0002.png
+  thumbsRaccoon: https://cloud-r04a8za6c-hack-club-bot.vercel.app/1001.png
+  dedRaccoon: https://cloud-r04a8za6c-hack-club-bot.vercel.app/2003.png

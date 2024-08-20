@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to the shop!</title>
+  <script src="js/js-yaml.js"></script>
+  <script src="js/howler.js"></script>
+  <script src="js/yapping.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/transcript.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    let activitySinceOpen = false
+    window.onload = () => {
+      const startButton = document.getElementById('start-button');
+      startButton.disabled = true
+      showMusic.on('load', () => {
+        startButton.removeAttribute('disabled')
+      })
+      startButton.addEventListener('click', () => {
+        // add some activity tracking...
+        let pageActivationHandler = (e) => {
+          if(e.isTrusted) {
+            activitySinceOpen = true
+            window.removeEventListener("click", pageActivationHandler);
+            window.removeEventListener("scroll", pageActivationHandler);
+          }
+        }
+        setTimeout(() => {
+          window.addEventListener("click", pageActivationHandler);
+          window.addEventListener("scroll", pageActivationHandler);
+        }, 1000)
+        // start playing the shop music
+        playMusic()
+        // start the shopkeeper's greeting
+        document.getElementById('shopkeeper-bar').classList.remove('out-of-view')
+        new Promise(async () => {
+          await shopkeeperSay('cuteRaccoon')
+          await new Promise(resolve => setTimeout(resolve, 2000))
+          await shopkeeperInteraction(transcript('greeting.message'))
+
+          await new Promise(resolve => setTimeout(resolve, 1 * 1000))
+          if (!activitySinceOpen) {
+            await shopkeeperSay('infoRaccoon', '              .                .                 .              ', false)
+          }
+          await new Promise(resolve => setTimeout(resolve, 1 * 1000))
+          if (!activitySinceOpen) {
+            await shopkeeperSay('tinfoilRaccoon', transcript('greeting.idle', {customer: 'max'}), false)
+          }
+          await new Promise(resolve => setTimeout(resolve, 1 * 1000))
+          if (!activitySinceOpen) {
+            await shopkeeperSay('notFound', transcript('greeting.not-loading'))
+          }
+          if (!activitySinceOpen) {
+            spinDownMusic()
+            await shopkeeperSay('notFound', "I'm taking this music off too...", false)
+          }
+        })
+
+        // remove the start button
+        startButton.remove()
+        // load up the shop data
+
+        const items = transcript('items', {}, false)
+
+        for (const item in items) {
+          const itemData = items[item];
+          const itemElement = document.createElement('div');
+          const rotation = (Math.random() * 10) - 5;
+          itemElement.classList.add('shop-item');
+          itemElement.style.transform = `rotate(${rotation}deg)`;
+          itemElement.innerHTML = `
+            <h2>${itemData.name}</h2>
+            <img src="${itemData.image}" />
+            <p>Price: $${itemData.price}</p>
+          `;
+          const buyButton = document.createElement('button')
+          buyButton.innerHTML = 'Add to cart'
+          buyButton.onclick = async () => {
+            let flavor = itemData.flavor || itemData.description
+            if (Array.isArray(flavor)) {
+              flavor = flavor[Math.floor(Math.random() * flavor.length)]
+            }
+            console.log({flavor})
+            await shopkeeperInteraction(transcript('item-clicked', {item: itemData.name}) + '|' + flavor)
+          }
+          itemElement.appendChild(buyButton)
+          document.getElementById('shop-grid').appendChild(itemElement);
+        }
+      })
+    }
+  </script>
+  <style>
+    .shop-item {
+      transition: transform 0.5s;
+    }
+    .shop-item img {
+      width: 100%;
+      max-width: 100px;
+    }
+    .shop-item:hover {
+      transform: rotate(0deg)!important;
+    }
+    #shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 52em;
+      margin: 0 auto;
+      margin-bottom: 100px;
+    }
+
+    #shopkeeper-image {
+      min-width: 100px;
+    }
+
+    #shopkeeper-image.idle {
+      animation: idle 2s infinite alternate;
+      filter: contrast(60%);
+    }
+    #shopkeeper-image.talking {
+      animation: talking 0.5s infinite alternate;
+    }
+
+    @keyframes idle {
+      from {
+        transform: translateY(0%);
+      } to {
+        transform: translateY(2%);
+      }
+    }
+
+    @keyframes talking {
+      from {
+        transform: scale(1.01, 0.99) translateY(2%);
+      } to {
+        transform: scale(0.99, 1.01) translateY(0%);
+      }
+    }
+
+    #shopkeeper-bar {
+      position: fixed;
+      bottom: 0;
+      transition-duration: 2s;
+      pointer-events: none;
+    }
+    #shopkeeper-bar.out-of-view {
+      bottom: -100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to the shop!</h1>
+  <button id="start-button">Start shopping</button>
+  <div style="position: relative; min-height: 100vh;">
+    <div id="shop-grid"></div>
+    <div id="shopkeeper-bar" class="out-of-view">
+      <img id="shopkeeper-image" src="" class="idle" />
+      <div id="shopkeeper-speech"></div>
+    </div>
+  </div>
+</body>
+</html>
