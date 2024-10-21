@@ -36,6 +36,7 @@ items:
       - it's pointy
       - better than a stick
       - .        .           .          for a basic adventurer
+      - i've stopped selling these for good..... now i just sell them for evil
     image: imgs/sword.png
   - name: "Basic shield"
     price: 100
@@ -63,6 +64,7 @@ items:
     flavor:
       - icon:infoRaccoon|contact your healer if mana is restored for more than 4 hours
       - drink responsibly
+      - get it with a straw!
       - "icon:woahRaccoon|made from real pixies, |icon:tinfoilRaccoon|...not just the dust!"
     image: imgs/mana.png
   - name: "Mysterious key"
