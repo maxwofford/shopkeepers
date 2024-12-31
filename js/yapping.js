@@ -28,7 +28,7 @@ const yap_sounds = {
     z: new Howl({ src: 'audio/z.wav' }),
     th: new Howl({ src: 'audio/th.wav' }),
     sh: new Howl({ src: 'audio/sh.wav' }),
-    _: new Howl({ src: 'audio/_.wav' })
+    _: new Howl({ src: 'audio/space.wav' })
   }
 
 async function yap(text, {
